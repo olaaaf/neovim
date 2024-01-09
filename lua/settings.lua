@@ -8,6 +8,8 @@ vim.opt.expandtab = true  -- Convert tabs to spaces
 
 vim.g.python3_host_prog = '/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12'
 
+vim.wo.fillchars='eob: '
+
 local windline = require('wlsample.wind')
 
 require('nvim-cursorline').setup {
@@ -24,3 +26,5 @@ require('nvim-cursorline').setup {
 }
 
 require('telescope').setup()
+
+require('nvim-tree').setup()

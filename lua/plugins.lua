@@ -30,4 +30,10 @@ return require('packer').startup(function(use)
     use 'gennaro-tedesco/nvim-peekup' -- Better register peekup
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim' -- File search
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons',
+        },
+    }
 end)
