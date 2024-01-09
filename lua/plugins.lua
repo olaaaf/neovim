@@ -26,4 +26,5 @@ return require('packer').startup(function(use)
     use 'saadparwaiz1/cmp_luasnip'  -- Snippet completions
     use 'L3MON4D3/LuaSnip'  -- Snippet engine
     use 'windwp/windline.nvim' -- Status line with animation
+    use 'yamatsum/nvim-cursorline' -- Cursor line
 end)
