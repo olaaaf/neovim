@@ -19,4 +19,4 @@ install lsp servers with `:Mason` or `:MasonInstall <name>`
 - jdtls
 - omnisharp
 - pyright
-- ltex-ls
+- marksman
