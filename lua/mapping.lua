@@ -1,5 +1,8 @@
 local cmp = require('cmp')
 
+-- set the leader to space
+vim.g.mapleader = " "
+
 local cmp_mapping = {
         -- control + d to scroll documentation
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -15,5 +18,12 @@ local cmp_mapping = {
         ['<Down>'] = cmp.mapping.select_next_item(),
         ['<Up>'] = cmp.mapping.select_prev_item(),
 }
+
+-- Telescope config
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 
 return {cmp_mapping = cmp_mapping}

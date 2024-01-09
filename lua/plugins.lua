@@ -27,4 +27,7 @@ return require('packer').startup(function(use)
     use 'L3MON4D3/LuaSnip'  -- Snippet engine
     use 'windwp/windline.nvim' -- Status line with animation
     use 'yamatsum/nvim-cursorline' -- Cursor line
+    use 'gennaro-tedesco/nvim-peekup' -- Better register peekup
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-telescope/telescope.nvim' -- File search
 end)

@@ -1,5 +1,5 @@
 local cmp = require('cmp')
-local mapping = require('mapping')
+local mapper = require('mapping')
 local lsp = require('lspconfig')
 
 lsp.pyright.setup{}
@@ -9,6 +9,7 @@ lsp.jdtls.setup{}
 lsp.omnisharp.setup{
   cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(pid) };
 }
+lsp.marksman.setup{}
 
 
 cmp.setup({
@@ -24,8 +25,9 @@ cmp.setup({
     {
         { name = 'buffer' },
     }),
-    mapping = mapping.cmp_mapping,
+    mapping = mapper.cmp_mapping,
 })
 
 -- Setup lspconfig with the new default_capabilities method.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+

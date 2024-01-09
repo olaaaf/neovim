@@ -22,3 +22,5 @@ require('nvim-cursorline').setup {
         hl = { underline = true },
     }
 }
+
+require('telescope').setup()
