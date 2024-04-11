@@ -28,3 +28,13 @@ require('nvim-cursorline').setup {
 require('telescope').setup()
 
 require('nvim-tree').setup()
+
+-- set vim to use system clipboard
+if vim.fn.has("unnamedplus") == 1 then
+    vim.o.clipboard = "unnamedplus"
+else
+    vim.o.clipboard = "unnamed"
+end
+
+-- ignore DS_Store files
+vim.opt.wildignore:append '*/.DS_Store'

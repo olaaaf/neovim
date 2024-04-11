@@ -29,4 +29,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 -- File tree
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', {})
 
+-- New File
+vim.keymap.set('n', '<leader>n', ':enew<CR>', { noremap = true, silent = true })
+
 return {cmp_mapping = cmp_mapping}
