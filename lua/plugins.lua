@@ -36,4 +36,5 @@ return require('packer').startup(function(use)
             'kyazdani42/nvim-web-devicons',
         },
     }
+    use 'mhartington/formatter.nvim'  -- Formatting plugin
 end)
