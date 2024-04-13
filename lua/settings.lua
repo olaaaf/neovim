@@ -108,3 +108,14 @@ autocmd("BufWritePost", {
 	command = ":FormatWrite",
 })
 
+-- Ensure a newline at the end of each file before saving
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*", -- Applies to all files
+	callback = function()
+		-- If the last line is not empty, add a new empty line
+		if vim.fn.getline("$") ~= "" then
+			vim.fn.append("$", "")
+		end
+	end,
+})
+
