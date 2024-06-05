@@ -24,10 +24,7 @@ require("nvim-cursorline").setup({
 		hl = { underline = true },
 	},
 })
-
 require("telescope").setup()
-
-require("nvim-tree").setup()
 
 -- set vim to use system clipboard
 if vim.fn.has("unnamedplus") == 1 then
@@ -118,4 +115,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 		end
 	end,
 })
+
+-- set language
+vim.o.langmenu = "en_US"
+
+vim.cmd([[
+highlight Normal ctermbg=NONE guifg=NONE guibg=NONE
+highlight NonText ctermbg=NONE guifg=NONE guibg=NONE
+highlight LineNr ctermbg=NONE guifg=NONE guibg=NONE
+highlight Folded ctermbg=NONE guifg=NONE guibg=NONE
+highlight EndOfBuffer ctermbg=NONE guifg=NONE guibg=NONE
+]])
 
