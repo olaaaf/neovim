@@ -26,9 +26,6 @@ vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
 vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 
--- File tree
-vim.keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>", {})
-
 -- New File
 vim.keymap.set("n", "<leader>n", ":enew<CR>", { noremap = true, silent = true })
 
@@ -37,6 +34,8 @@ vim.api.nvim_set_keymap("v", "<leader>tt", ">gv", { noremap = true, silent = tru
 
 -- Remove a tab (unindent) from the selected lines
 vim.api.nvim_set_keymap("v", "<leader>tr", "<gv", { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>e', ':Neotree toggle<CR>', { noremap = true, silent = true })
 
 return { cmp_mapping = cmp_mapping }
 
