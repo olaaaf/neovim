@@ -10,8 +10,6 @@ vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.12/bi
 
 vim.wo.fillchars = "eob: "
 
-local windline = require("wlsample.wind")
-
 require("nvim-cursorline").setup({
 	cursorline = {
 		enable = false,
