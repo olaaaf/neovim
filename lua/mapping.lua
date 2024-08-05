@@ -28,8 +28,8 @@ vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
 vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
 vim.keymap.set("n", "<leader>gc", builtin.git_commits, {})
 vim.keymap.set("n", "<leader>gb", builtin.git_branches, {})
-vim.keymap.set("n", "<leader>fm", builtin.marks, {})
-vim.keymap.set("n", "<leader>rr", builtin.registers, {})
+vim.keymap.set("n", "<leader>m", builtin.marks, {})
+vim.keymap.set("n", "<leader>r", builtin.registers, {})
 
 -- New File
 vim.keymap.set("n", "<leader>n", ":enew<CR>", { noremap = true, silent = true })
