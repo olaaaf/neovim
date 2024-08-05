@@ -22,7 +22,29 @@ require("nvim-cursorline").setup({
 		hl = { underline = true },
 	},
 })
-require("telescope").setup()
+require("telescope").setup({
+	defaults = {
+		vimgrep_arguments = {
+			"rg",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
+	},
+})
+
+require("neo-tree").setup({
+	filesystem = {
+		filtered_items = {
+			visible = true, -- This is what you want: If you set this to `true`, all "hide" just mean "dimmed out"
+			hide_dotfiles = false,
+			hide_gitignored = true,
+		},
+	},
+})
 
 -- set vim to use system clipboard
 if vim.fn.has("unnamedplus") == 1 then
