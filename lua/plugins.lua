@@ -40,5 +40,10 @@ return require("packer").startup(function(use)
 		},
 	})
 	use({ "alexander-born/bazel.nvim", requires = { "nvim-treesitter/nvim-treesitter" } })
+	use({ "lervag/vimtex" })
+	use({
+		"nvim-telescope/telescope-file-browser.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
+	})
 end)
 

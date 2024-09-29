@@ -9,6 +9,7 @@ vim.opt.expandtab = true -- Convert tabs to spaces
 vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12"
 
 vim.wo.fillchars = "eob: "
+vim.g.vimtex_view_method = "skim"
 
 require("nvim-cursorline").setup({
 	cursorline = {
