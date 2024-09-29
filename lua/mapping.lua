@@ -21,6 +21,7 @@ local cmp_mapping = {
 
 -- Telescope config
 local builtin = require("telescope.builtin")
+
 vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
 vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
 -- vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
@@ -30,6 +31,8 @@ vim.keymap.set("n", "<leader>gc", builtin.git_commits, {})
 vim.keymap.set("n", "<leader>gb", builtin.git_branches, {})
 vim.keymap.set("n", "<leader>m", builtin.marks, {})
 vim.keymap.set("n", "<leader>r", builtin.registers, {})
+
+vim.keymap.set("n", "<space>fd", ":Telescope projects<CR>")
 
 -- Telescope file
 vim.keymap.set("n", "<space>fb", ":Telescope file_browser<CR>")

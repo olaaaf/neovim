@@ -45,5 +45,17 @@ return require("packer").startup(function(use)
 		"nvim-telescope/telescope-file-browser.nvim",
 		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	})
+	use({
+		"ahmedkhalf/project.nvim",
+		config = function()
+			require("project_nvim").setup({})
+		end,
+	})
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
 end)
 
