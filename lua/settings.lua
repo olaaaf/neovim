@@ -2,9 +2,10 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.opt.tabstop = 4 -- Set the width of a tab character
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true -- Convert tabs to spaces
+vim.o.tabstop = 4
+vim.o.expandtab = true
+vim.o.smartindent = true
+vim.o.shiftwidth = 4
 
 vim.g.python3_host_prog = "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3.12"
 
@@ -24,7 +25,13 @@ require("nvim-cursorline").setup({
 	},
 })
 require("telescope").setup({
+	pickers = {
+		find_files = {
+			hidden = true,
+		},
+	},
 	defaults = {
+		file_ignore_patterns = { ".git/" },
 		vimgrep_arguments = {
 			"rg",
 			"--color=never",
@@ -147,4 +154,6 @@ highlight LineNr ctermbg=NONE guifg=NONE guibg=NONE
 highlight Folded ctermbg=NONE guifg=NONE guibg=NONE
 highlight EndOfBuffer ctermbg=NONE guifg=NONE guibg=NONE
 ]])
+
+vim.opt.ignorecase = true
 

@@ -13,7 +13,6 @@ require("mason").setup() -- Initialize mason
 require("mason-lspconfig").setup({
 	ensure_installed = servers,
 })
-
 -- Function to attach to every LSP server
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
@@ -33,4 +32,25 @@ for _, lsp in ipairs(servers) do
 		on_attach = on_attach,
 	})
 end
+
+require("lsp_signature").setup({
+	transparency = 0,
+})
+
+-- local cmp = require("cmp")
+--
+-- cmp.setup({
+-- 	window = {
+--
+-- 		completion = {
+-- 			border = "rounded",
+-- 			winhighlight = "Normal:CmpNormal",
+-- 		},
+-- 		documentation = {
+-- 			border = "rounded",
+-- 			winhighlight = "Normal:CmpNormal",
+-- 		},
+-- 	},
+-- })
+--
 

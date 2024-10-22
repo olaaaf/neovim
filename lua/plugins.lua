@@ -17,6 +17,9 @@ return require("packer").startup(function(use)
 	use("hrsh7th/cmp-path") -- Path completions
 	use("hrsh7th/cmp-cmdline") -- Cmdline completions
 	use("hrsh7th/cmp-nvim-lsp") -- LSP source for nvim-cmp
+	use({
+		"ray-x/lsp_signature.nvim",
+	})
 	use("saadparwaiz1/cmp_luasnip") -- Snippet completions
 	use("L3MON4D3/LuaSnip") -- Snippet engine
 	use("windwp/windline.nvim") -- Status line with animation
@@ -48,7 +51,9 @@ return require("packer").startup(function(use)
 	use({
 		"ahmedkhalf/project.nvim",
 		config = function()
-			require("project_nvim").setup({})
+			require("project_nvim").setup({
+				show_hidden = false,
+			})
 		end,
 	})
 	use({
