@@ -14,9 +14,10 @@ in neovim invoke: `:PackerInstall`
 
 install lsp servers with `:Mason` or `:MasonInstall <name>`
 
-- rust_analyzer
+- rust\_analyzer
 - clangd
 - jdtls
 - omnisharp
 - pyright
 - ltex-ls
+- ruff

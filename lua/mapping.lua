@@ -22,31 +22,71 @@ local cmp_mapping = {
 -- Telescope config
 local builtin = require("telescope.builtin")
 
-vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
--- vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
-vim.keymap.set("n", "<leader>gs", builtin.git_status, {})
-vim.keymap.set("n", "<leader>gc", builtin.git_commits, {})
-vim.keymap.set("n", "<leader>gb", builtin.git_branches, {})
-vim.keymap.set("n", "<leader>m", builtin.marks, {})
-vim.keymap.set("n", "<leader>r", builtin.registers, {})
-
-vim.keymap.set("n", "<space>fd", ":Telescope projects<CR>")
+vim.keymap.set("n", "ff", builtin.find_files, { desc = "fuzzy find files" })
+vim.keymap.set("n", "fg", builtin.live_grep, { desc = "live grep" })
+vim.keymap.set("n", "fh", builtin.help_tags, { desc = "show help tags" })
+vim.keymap.set(
+	"n",
+	"fd",
+	":Telescope projects<CR>",
+	{ desc = "show projects" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>gs",
+	builtin.git_status,
+	{ desc = "show git status" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>gc",
+	builtin.git_commits,
+	{ desc = "show git commits" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>gb",
+	builtin.git_branches,
+	{ desc = "show git branches" }
+)
+vim.keymap.set("n", "<leader>m", builtin.marks, { desc = "show marks" })
+vim.keymap.set(
+	"n",
+	"<leader>r",
+	builtin.registers,
+	{ desc = "show registers | copy paste" }
+)
 
 -- Telescope file
-vim.keymap.set("n", "<space>fb", ":Telescope file_browser<CR>")
+vim.keymap.set(
+	"n",
+	"fb",
+	":Telescope file_browser<CR>",
+	{ desc = "toggle file browser telescope" }
+)
 
 -- New File
-vim.keymap.set("n", "<leader>n", ":enew<CR>", { noremap = true, silent = true })
+vim.keymap.set(
+	"n",
+	"<leader>n",
+	":enew<CR>",
+	{ noremap = true, silent = true, desc = "new file" }
+)
 
 -- Add a tab (indent) to the selected lines
-vim.api.nvim_set_keymap("v", "<leader>tt", ">gv", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	"v",
+	"tt",
+	">gv",
+	{ noremap = true, silent = true, desc = "add indent | tab" }
+)
 
 -- Remove a tab (unindent) from the selected lines
-vim.api.nvim_set_keymap("v", "<leader>tr", "<gv", { noremap = true, silent = true })
-
-vim.api.nvim_set_keymap("n", "<leader>e", ":Neotree toggle<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+	"v",
+	"tr",
+	"<gv",
+	{ noremap = true, silent = true, desc = "remove indent | tab" }
+)
 
 return { cmp_mapping = cmp_mapping }
-

@@ -6,6 +6,7 @@ local servers = {
 	"lua_ls",
 	"marksman",
 	"omnisharp",
+	"ruff",
 	"pyright",
 }
 
@@ -18,7 +19,7 @@ local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
 		vim.api.nvim_buf_set_keymap(bufnr, ...)
 	end
-	local opts = { noremap = true, silent = true }
+	local opts = { noremap = true, silent = true, desc = "show definition" }
 
 	-- Key mappings
 	buf_set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -27,30 +28,24 @@ end
 
 local lspconfig = require("lspconfig")
 
+local custom_settings = {
+	clangd = {},
+}
+
 for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
-		on_attach = on_attach,
-	})
+	if lsp == "ruff" then
+		lspconfig[lsp].setup({})
+	else
+		lspconfig[lsp].setup({
+			on_attach = on_attach,
+		})
+	end
 end
 
 require("lsp_signature").setup({
 	transparency = 0,
 })
 
--- local cmp = require("cmp")
---
--- cmp.setup({
--- 	window = {
---
--- 		completion = {
--- 			border = "rounded",
--- 			winhighlight = "Normal:CmpNormal",
--- 		},
--- 		documentation = {
--- 			border = "rounded",
--- 			winhighlight = "Normal:CmpNormal",
--- 		},
--- 	},
--- })
---
-
+vim.keymap.set({ "n" }, "<C-k>", function()
+	require("lsp_signature").toggle_float_win()
+end, { silent = true, noremap = true, desc = "toggle arguments help" })
