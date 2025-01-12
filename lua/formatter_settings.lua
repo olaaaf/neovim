@@ -1,143 +1,72 @@
-local util = require("formatter.util")
+local conform = require("conform")
 
-require("formatter").setup({
-	logging = true,
-	log_level = vim.log.levels.WARN,
-	filetype = {
-		json = {
-			function()
-				return {
-					exe = "prettier",
-					args = {
-						"--stdin-filepath",
-						vim.api.nvim_buf_get_name(0),
-						"--print-width",
-						"79",
-					},
-					stdin = true,
-				}
-			end,
+conform.setup({
+	formatters = {
+		prettier = {
+			prepend_args = {
+				"--print-width",
+				"79",
+			},
 		},
-		markdown = {
-			function()
-				return {
-					exe = "prettier",
-					args = {
-						"--stdin-filepath",
-						vim.api.nvim_buf_get_name(0),
-						"--print-width",
-						"79",
-					},
-					stdin = true,
-				}
-			end,
+		clang_format = {
+			prepend_args = { "--style=file", "--fallback-style=LLVM" },
 		},
-
-		-- CMake with cmakelang's cmake-format and line width
-		cmake = {
-			function()
-				return {
-					exe = "cmake-format",
-					args = {
-						vim.api.nvim_buf_get_name(0),
-						"--line-width",
-						"79", -- Setting line width
-					},
-					stdin = false,
-				}
-			end,
+		stylua = {
+			prepend_args = {
+				"--column-width",
+				"79", -- Line width limit
+			},
 		},
-
-		-- Bazel files with buildifier and line length (if applicable)
-		bzl = {
-			function()
-				return {
-					exe = "buildifier",
-					args = { "--type=bzl", vim.api.nvim_buf_get_name(0) },
-					stdin = false,
-				}
-			end,
+		ruff_format = {
+			command = "ruff",
+			args = { "format", "--quiet", "-" },
 		},
-
-		-- Clang-format for C/C++/Objective-C with fallback style and column limit
-		cpp = {
-			function()
-				return {
-					exe = "clang-format",
-					args = {
-						"--assume-filename",
-						vim.api.nvim_buf_get_name(0),
-						"--fallback-style=WebKit",
-					},
-					stdin = true,
-					cwd = vim.fn.expand("%:p:h"), -- Run formatter in current file's directory
-				}
-			end,
+		ruff = {
+			command = "ruff",
+			args = { "check", "--fix", "--quiet", "-" },
 		},
-
-		-- GDScript with gdformat
-		gd = {
-			function()
-				return {
-					exe = "gdformat",
-					args = { vim.api.nvim_buf_get_name(0) },
-					stdin = false,
-				}
-			end,
-		},
-
-		-- Python with isort and line length
-		python = {
-			function()
-				return {
-					exe = "isort",
-					args = { "--line-length", "79", "-" },
-					stdin = true,
-				}
-			end,
-		},
-
-		-- Lua with stylua and column width
-		lua = {
-			function()
-				return {
-					exe = "stylua",
-					args = {
-						"--column-width",
-						"79", -- Line width limit
-						"--search-parent-directories",
-						"--stdin-filepath",
-						vim.api.nvim_buf_get_name(0),
-						"--",
-						"-",
-					},
-					stdin = true,
-				}
+		latexindent = {
+			command = "latexindent",
+			stdin = true,
+			append_args = function()
+				return { "-m" }
 			end,
 		},
 	},
-
-	["*"] = {
-		-- "formatter.filetypes.any" defines default configurations for any
-		-- filetype
-		require("formatter.filetypes.any").remove_trailing_whitespace,
-		-- Remove trailing whitespace without 'sed'
-		-- require("formatter.filetypes.any").substitute_trailing_whitespace,
+	formatters_by_ft = {
+		lua = { "stylua" },
+		-- Conform will run multiple formatters sequentially
+		python = { "isort", "ruff_format", "ruff" },
+		-- You can customize some of the format options for the filetype (:help conform.format)
+		rust = { "rustfmt", lsp_format = "fallback" },
+		-- Conform will run the first available formatter
+		javascript = { "prettier", stop_after_first = true },
+		tex = { "latexindent" },
+		bazel = { "buildifier" },
+		bzl = { "buildifier" },
+		markdown = { "prettier" },
+		json = { "prettier" },
+		cmake = { "cmake_format" },
+		cpp = { "clang_format" },
+		gd = { "gdformat" },
+	},
+	format_on_save = {
+		lsp_fallback = true,
+		async = false,
+		timeout_ms = 500,
 	},
 })
+vim.keymap.set({ "n", "v" }, "<leader>ft", function()
+	conform.format({
+		lsp_fallback = true,
+		async = false,
+		timeout_ms = 500,
+	})
+end, { desc = "Format file or range (in visual mode)" })
 
--- Keybinding for formatting
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>ft",
-	"<cmd>Format<CR>",
-	{ noremap = true, silent = true }
-)
-
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-augroup("__formatter__", { clear = true })
-autocmd("BufWritePost", {
-	group = "__formatter__",
-	command = ":FormatWrite",
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = "*",
+	callback = function(args)
+		require("conform").format({ bufnr = args.buf })
+	end,
 })

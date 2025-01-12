@@ -58,12 +58,12 @@ vim.opt.wildignore:append("*/.DS_Store")
 -- set language
 vim.o.langmenu = "en_US"
 
-vim.cmd([[
-highlight Normal ctermbg=NONE guifg=NONE guibg=NONE
-highlight NonText ctermbg=NONE guifg=NONE guibg=NONE
-highlight LineNr ctermbg=NONE guifg=NONE guibg=NONE
-highlight Folded ctermbg=NONE guifg=NONE guibg=NONE
-highlight EndOfBuffer ctermbg=NONE guifg=NONE guibg=NONE
-]])
+-- vim.cmd([[
+-- highlight Normal ctermbg=NONE guifg=NONE guibg=NONE
+-- highlight NonText ctermbg=NONE guifg=NONE guibg=NONE
+-- highlight LineNr ctermbg=NONE guifg=NONE guibg=NONE
+-- highlight Folded ctermbg=NONE guifg=NONE guibg=NONE
+-- highlight EndOfBuffer ctermbg=NONE guifg=NONE guibg=NONE
+-- ]])
 
 vim.opt.ignorecase = true

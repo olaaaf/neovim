@@ -24,7 +24,6 @@ local builtin = require("telescope.builtin")
 
 vim.keymap.set("n", "ff", builtin.find_files, { desc = "fuzzy find files" })
 vim.keymap.set("n", "fg", builtin.live_grep, { desc = "live grep" })
-vim.keymap.set("n", "fh", builtin.help_tags, { desc = "show help tags" })
 vim.keymap.set(
 	"n",
 	"fd",
@@ -89,4 +88,35 @@ vim.api.nvim_set_keymap(
 	{ noremap = true, silent = true, desc = "remove indent | tab" }
 )
 
+-- harpoon settings
+local harpoon = require("harpoon")
+harpoon:setup({})
+
+-- basic telescope configuration
+local conf = require("telescope.config").values
+local function toggle_telescope(harpoon_files)
+	local file_paths = {}
+	for _, item in ipairs(harpoon_files.items) do
+		table.insert(file_paths, item.value)
+	end
+
+	require("telescope.pickers")
+		.new({}, {
+			prompt_title = "Harpoon",
+			finder = require("telescope.finders").new_table({
+				results = file_paths,
+			}),
+			previewer = conf.file_previewer({}),
+			sorter = conf.generic_sorter({}),
+		})
+		:find()
+end
+
+vim.keymap.set("n", "<leader>a", function()
+	harpoon:list():add()
+end)
+
+vim.keymap.set("n", "<leader>e", function()
+	harpoon.ui:toggle_quick_menu(harpoon:list())
+end)
 return { cmp_mapping = cmp_mapping }

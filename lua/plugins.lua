@@ -41,6 +41,18 @@ return require("packer").startup(function(use)
 		config = function()
 			require("project_nvim").setup({
 				show_hidden = false,
+				patterns = {
+					".git",
+					".nvim",
+					"_darcs",
+					".hg",
+					".bzr",
+					".svn",
+					"Makefile",
+					"package.json",
+				},
+				detection_methods = { "patterns" },
+				manual_mode = true, -- Prevents automatic root directory changes
 			})
 		end,
 	})
@@ -50,9 +62,26 @@ return require("packer").startup(function(use)
 			require("Comment").setup()
 		end,
 	})
-	use({ "mhartington/formatter.nvim" })
+	-- formatter
+	use({
+		"stevearc/conform.nvim",
+		config = function()
+			require("conform").setup()
+		end,
+	})
 	-- change to dark mode once system color changes :)
 	use({ "f-person/auto-dark-mode.nvim" })
 	-- color scheme
 	use({ "austinliuigi/smoke.nvim" })
+	use({
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
+	use("mfussenegger/nvim-lint")
+	use({ "catppuccin/nvim", as = "catppuccin" })
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons", opt = true },
+	})
 end)

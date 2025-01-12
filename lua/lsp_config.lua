@@ -6,8 +6,8 @@ local servers = {
 	"lua_ls",
 	"marksman",
 	"omnisharp",
-	"ruff",
 	"pyright",
+	"ruff",
 }
 
 require("mason").setup() -- Initialize mason
@@ -33,13 +33,9 @@ local custom_settings = {
 }
 
 for _, lsp in ipairs(servers) do
-	if lsp == "ruff" then
-		lspconfig[lsp].setup({})
-	else
-		lspconfig[lsp].setup({
-			on_attach = on_attach,
-		})
-	end
+	lspconfig[lsp].setup({
+		on_attach = on_attach,
+	})
 end
 
 require("lsp_signature").setup({
@@ -49,3 +45,12 @@ require("lsp_signature").setup({
 vim.keymap.set({ "n" }, "<C-k>", function()
 	require("lsp_signature").toggle_float_win()
 end, { silent = true, noremap = true, desc = "toggle arguments help" })
+
+-- linter
+config = function()
+	vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+		callback = function()
+			require("lint").try_lint()
+		end,
+	})
+end
