@@ -45,6 +45,8 @@ require("telescope").setup({
 	},
 })
 
+require("telescope").load_extension("conflicts")
+
 -- set vim to use system clipboard
 if vim.fn.has("unnamedplus") == 1 then
 	vim.o.clipboard = "unnamedplus"

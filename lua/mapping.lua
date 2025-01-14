@@ -26,10 +26,24 @@ vim.keymap.set("n", "ff", builtin.find_files, { desc = "fuzzy find files" })
 vim.keymap.set("n", "fg", builtin.live_grep, { desc = "live grep" })
 vim.keymap.set(
 	"n",
+	"<leader>fr",
+	builtin.lsp_references,
+	{ desc = "show lsp references" }
+)
+vim.keymap.set(
+	"n",
 	"fd",
 	":Telescope projects<CR>",
 	{ desc = "show projects" }
 )
+
+vim.keymap.set(
+	"n",
+	"<leader>co",
+	":Telescope conflicts<CR>",
+	{ desc = "show telescope git conflicts" }
+)
+
 vim.keymap.set(
 	"n",
 	"<leader>gs",
