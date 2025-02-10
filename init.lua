@@ -1,4 +1,5 @@
-require("plugins")
+-- install lazy plugin manager
+require("config.lazy")
 require("cmpconfig")
 require("settings")
 require("lsp_config")

@@ -1,46 +1,41 @@
-vim.cmd([[packadd packer.nvim]])
-
-return require("packer").startup(function(use)
-	-- Packer can manage itself
-	use("wbthomason/packer.nvim")
-
-	use("neovim/nvim-lspconfig")
-	-- Mason plugin
-	use({
-		"williamboman/mason.nvim",
-	})
-	use({
-		"williamboman/mason-lspconfig.nvim",
-	})
-	use("hrsh7th/nvim-cmp") -- The completion plugin
-	use("hrsh7th/cmp-buffer") -- Buffer completions
-	use("hrsh7th/cmp-path") -- Path completions
-	use("hrsh7th/cmp-cmdline") -- Cmdline completions
-	use("hrsh7th/cmp-nvim-lsp") -- LSP source for nvim-cmp
-	use({
-		"ray-x/lsp_signature.nvim",
-	})
-	use("saadparwaiz1/cmp_luasnip") -- Snippet completions
-	use("L3MON4D3/LuaSnip") -- Snippet engine
-	use("windwp/windline.nvim") -- Status line with animation
-	use("yamatsum/nvim-cursorline") -- Cursor line
-	use("gennaro-tedesco/nvim-peekup") -- Better register peekup
-	use("nvim-lua/plenary.nvim")
-	use({
+return {
+	{ "nvim-lua/plenary.nvim" },
+	{ "neovim/nvim-lspconfig" },
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
+	{ "hrsh7th/nvim-cmp" }, -- The completion plugin
+	{ "hrsh7th/cmp-buffer" }, -- Buffer completions
+	{ "hrsh7th/cmp-path" }, -- Path completions
+	{ "hrsh7th/cmp-cmdline" }, -- Cmdline completions
+	{ "hrsh7th/cmp-nvim-lsp" }, -- LSP source for nvim-cmp
+	{ "ray-x/lsp_signature.nvim" },
+	{ "saadparwaiz1/cmp_luasnip" }, -- Snippet completions
+	{ "L3MON4D3/LuaSnip" }, -- Snippet engine
+	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
-		requires = {
-			{
-				"nvim-lua/plenary.nvim",
-			},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"Snikimonkd/telescope-git-conflicts.nvim",
 		},
-	})
-	use({ "lervag/vimtex" })
-	use({
+	},
+	-- file browser for telescope
+	{
 		"nvim-telescope/telescope-file-browser.nvim",
-		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
-	})
-	use({
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim",
+		},
+	},
+	{ "Snikimonkd/telescope-git-conflicts.nvim" },
+	{ "stevearc/conform.nvim" },
+	{
+		"ThePrimeagen/harpoon",
+		branch = "harpoon2",
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{ "numToStr/Comment.nvim" },
+	{
 		"ahmedkhalf/project.nvim",
 		config = function()
 			require("project_nvim").setup({
@@ -59,36 +54,20 @@ return require("packer").startup(function(use)
 				manual_mode = true, -- Prevents automatic root directory changes
 			})
 		end,
-	})
-	use({
-		"numToStr/Comment.nvim",
-		config = function()
-			require("Comment").setup()
-		end,
-	})
-	-- formatter
-	use({
-		"stevearc/conform.nvim",
-		config = function()
-			require("conform").setup()
-		end,
-	})
-	-- change to dark mode once system color changes :)
-	use({ "f-person/auto-dark-mode.nvim" })
-	-- color scheme
-	use({ "austinliuigi/smoke.nvim" })
-	use({
-		"ThePrimeagen/harpoon",
-		branch = "harpoon2",
-		requires = { { "nvim-lua/plenary.nvim" } },
-	})
-	use("mfussenegger/nvim-lint")
-	use({ "catppuccin/nvim", as = "catppuccin" })
-	use({
+	},
+	{ "lervag/vimtex" },
+	{
 		"nvim-lualine/lualine.nvim",
-		requires = { "nvim-tree/nvim-web-devicons", opt = true },
-	})
-	use({
-		"Snikimonkd/telescope-git-conflicts.nvim",
-	})
-end)
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+	},
+	{ "windwp/windline.nvim" }, -- Status line with animation
+	{ "yamatsum/nvim-cursorline" }, -- Cursor line
+	{ "gennaro-tedesco/nvim-peekup" }, -- Better register peekup
+	-- change to dark mode once system color changes :)
+	{ "f-person/auto-dark-mode.nvim" },
+	-- color scheme
+	{ "austinliuigi/smoke.nvim" },
+	{ "mfussenegger/nvim-lint" },
+	{ "catppuccin/nvim", name = "catppuccin" },
+	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+}

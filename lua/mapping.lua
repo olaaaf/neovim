@@ -30,6 +30,12 @@ vim.keymap.set(
 	builtin.lsp_references,
 	{ desc = "show lsp references" }
 )
+vim.keymap.set("n", "<leader>lh", function()
+	vim.lsp.buf.hover()
+end, { desc = "lsp hover" })
+vim.keymap.set("n", "<leader>lr", function()
+	vim.lsp.buf.rename()
+end, { desc = "rename symbol variable lsp" })
 vim.keymap.set(
 	"n",
 	"fd",
@@ -76,6 +82,12 @@ vim.keymap.set(
 	"fb",
 	":Telescope file_browser<CR>",
 	{ desc = "toggle file browser telescope" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>go",
+	":Telescope conflicts<CR>",
+	{ desc = "git conflicts telescope" }
 )
 
 -- New File
