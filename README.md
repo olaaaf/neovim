@@ -20,7 +20,7 @@ the theme automatically changes color theme to match the system
 
 ## how to install all the plugins?
 
-in neovim invoke: `:PackerInstall`
+in neovim invoke: `:Lazy`
 
 ## required lsp servers
 
