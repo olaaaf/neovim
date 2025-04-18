@@ -32,10 +32,10 @@ require("lazy").setup({
   -- colorscheme that will be used when installing plugins.
   install = { colorscheme = { "habamax" } },
   -- automatically check for plugin updates
-  checker = { enabled = true },
+  checker = { enabled = false },
 })
-require("cmpconfig")
 require("settings")
+require("mapping")
 require("lsp_config")
 require("wind")
 require("color_scheme")

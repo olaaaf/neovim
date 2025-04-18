@@ -3,13 +3,14 @@ return {
 	{ "neovim/nvim-lspconfig" },
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
-	{ "hrsh7th/nvim-cmp" }, -- The completion plugin
-	{ "hrsh7th/cmp-buffer" }, -- Buffer completions
-	{ "hrsh7th/cmp-path" }, -- Path completions
-	{ "hrsh7th/cmp-cmdline" }, -- Cmdline completions
-	{ "hrsh7th/cmp-nvim-lsp" }, -- LSP source for nvim-cmp
 	{ "ray-x/lsp_signature.nvim" },
-	{ "saadparwaiz1/cmp_luasnip" }, -- Snippet completions
+	{
+		"ms-jpq/coq_nvim",
+		dependencies = {
+			{ "ms-jpq/coq.artifacts", branch = "artifacts" },
+			{ "ms-jpq/coq.thirdparty", branch = "3p" },
+		},
+	},
 	{ "L3MON4D3/LuaSnip" }, -- Snippet engine
 	{
 		"nvim-telescope/telescope.nvim",
@@ -17,6 +18,7 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"Snikimonkd/telescope-git-conflicts.nvim",
+			"nvim-telescope/telescope-live-grep-args.nvim",
 		},
 	},
 	-- file browser for telescope
@@ -65,9 +67,14 @@ return {
 	{ "gennaro-tedesco/nvim-peekup" }, -- Better register peekup
 	-- change to dark mode once system color changes :)
 	{ "f-person/auto-dark-mode.nvim" },
-	-- color scheme
-	{ "austinliuigi/smoke.nvim" },
 	{ "mfussenegger/nvim-lint" },
-	{ "catppuccin/nvim", name = "catppuccin" },
 	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+	-- colorscheme
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+	},
+	{
+		"RRethy/vim-illuminate",
+	},
 }

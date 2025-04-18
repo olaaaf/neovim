@@ -1,10 +1,11 @@
 -- show relative and absolute line number
 vim.opt.number = true
 vim.opt.relativenumber = true
+-- vim.opt.cursorline = true
 
 vim.o.tabstop = 4
-vim.o.expandtab = true
-vim.o.smartindent = true
+--vim.o.expandtab = true
+vim.o.smarttab = true
 vim.o.shiftwidth = 4
 
 vim.g.python3_host_prog =
@@ -12,6 +13,10 @@ vim.g.python3_host_prog =
 
 vim.wo.fillchars = "eob: "
 vim.g.vimtex_view_method = "skim"
+
+vim.g.coq_settings = {
+	auto_start = true,
+}
 
 require("nvim-cursorline").setup({
 	cursorline = {
@@ -46,7 +51,7 @@ require("telescope").setup({
 })
 
 require("telescope").load_extension("conflicts")
-
+require("telescope").load_extension("live_grep_args")
 -- set vim to use system clipboard
 if vim.fn.has("unnamedplus") == 1 then
 	vim.o.clipboard = "unnamedplus"

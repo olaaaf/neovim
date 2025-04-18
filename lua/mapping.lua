@@ -1,29 +1,16 @@
-local cmp = require("cmp")
-
--- set the leader to space
 vim.g.mapleader = " "
-
-local cmp_mapping = {
-	-- control + d to scroll documentation
-	["<C-d>"] = cmp.mapping.scroll_docs(-4),
-	-- control + f to scroll documentation
-	["<C-f>"] = cmp.mapping.scroll_docs(4),
-	-- control + space to trigger completion
-	["<C-Space>"] = cmp.mapping.complete(),
-	-- control + e to close completion
-	["<C-e>"] = cmp.mapping.close(),
-	-- enter to confirm completion
-	["<CR>"] = cmp.mapping.confirm({ select = true }),
-	-- arrow keys to navigate completion menu
-	["<Down>"] = cmp.mapping.select_next_item(),
-	["<Up>"] = cmp.mapping.select_prev_item(),
-}
 
 -- Telescope config
 local builtin = require("telescope.builtin")
+local telescope = require("telescope")
 
 vim.keymap.set("n", "ff", builtin.find_files, { desc = "fuzzy find files" })
-vim.keymap.set("n", "fg", builtin.live_grep, { desc = "live grep" })
+vim.keymap.set(
+	"n",
+	"fg",
+	":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>",
+	{ desc = "live grep" }
+)
 vim.keymap.set(
 	"n",
 	"<leader>fr",
@@ -145,4 +132,4 @@ end)
 vim.keymap.set("n", "<leader>e", function()
 	harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
-return { cmp_mapping = cmp_mapping }
+return
