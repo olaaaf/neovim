@@ -4,14 +4,17 @@ return {
 	{ "williamboman/mason.nvim" },
 	{ "williamboman/mason-lspconfig.nvim" },
 	{ "ray-x/lsp_signature.nvim" },
+	{ "L3MON4D3/LuaSnip" }, -- Snippet engine
 	{
-		"ms-jpq/coq_nvim",
+
+		"hrsh7th/nvim-cmp",
 		dependencies = {
-			{ "ms-jpq/coq.artifacts", branch = "artifacts" },
-			{ "ms-jpq/coq.thirdparty", branch = "3p" },
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
 		},
 	},
-	{ "L3MON4D3/LuaSnip" }, -- Snippet engine
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",

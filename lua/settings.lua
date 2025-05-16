@@ -14,10 +14,6 @@ vim.g.python3_host_prog =
 vim.wo.fillchars = "eob: "
 vim.g.vimtex_view_method = "skim"
 
-vim.g.coq_settings = {
-	auto_start = true,
-}
-
 require("nvim-cursorline").setup({
 	cursorline = {
 		enable = false,

@@ -9,12 +9,14 @@ local servers = {
 	"pyright",
 	"ruff",
 	"zls",
+	"mesonlsp"
 }
 
 require("mason").setup() -- Initialize mason
 require("mason-lspconfig").setup({
 	ensure_installed = servers,
 })
+
 -- Function to attach to every LSP server
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
@@ -28,19 +30,16 @@ local on_attach = function(client, bufnr)
 end
 
 local lspconfig = require("lspconfig")
-local coq = require("coq")
 
 local custom_settings = {
 	clangd = {},
 }
 
 for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup(coq.lsp_ensure_capabilities({
+	lspconfig[lsp].setup({
 		on_attach = on_attach,
-	}))
+	})
 end
-
-coq.Now()
 
 require("lsp_signature").setup({
 	transparency = 0,
